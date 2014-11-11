@@ -470,6 +470,14 @@ This code makes a list of all functions in the base package:
 ```{r eval=FALSE}
 objs <- mget(ls("package:base"), inherits = TRUE)
 funs <- Filter(is.function, objs)
+args <- c()
+fo <- c()
+dm <- length(funs)
+for (i in 1:dm)
+  {
+    args[i] <- (funs[i])
+    fo[i] <- formals(args[i])
+  }
 ```
 
 Using this list, write code to answer these questions.
