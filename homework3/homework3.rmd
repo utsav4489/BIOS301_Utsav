@@ -242,20 +242,14 @@ logistic <- function(x) 1 / (1 + exp(-x))
     logistic <- function(x) 1 / (1 + exp(-x))
     
     # extracting the required columns 
-    x1 <- data[,c("cd4baseline","weight","hemoglobin")]
-    y1 <- data[,c("death")]
-    
-    # finding dimensions
-    n <- dim(x1)[1]
-    k <- dim(x1)[2]
-    
+    x1 <- data[,c("cd4baseline","weight","hemoglobin","death")]
     x1 <- as.matrix(x1)
-    y1 <- as.matrix(y1)
 
     # removing those datasets which are not complete
-    x <- na.omit(x1)
-    # defining y to the column size of x
-    y <- rep(1,nrow(x))
+    x1 <- na.omit(x1)
+    # defining x and y
+    x <- x1[,c("cd4baseline","weight","hemoglobin")]
+    y <- x1[,c("death")]
     
     estimate_logistic <- function(x, y, MAX_ITER=10) 
     {
